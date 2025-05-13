@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cubFirst – Démo complète</title>
+    <script
+      src="https://cdn.jsdelivr.net/gh/Romtouf/cubfirst@v1.0.1/dist/cubfirst.min.js"
+      defer
+    ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="min-h-screen p-6 bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-white transition"
+  >
+    <!-- Progress Scroll -->
+    <div data-plugin="progress-scroll"></div>
+
+    <!-- Header -->
+    <h1 class="text-3xl font-bold mb-6">cubFirst — Démo complète</h1>
+
+    <!-- Hamburger -->
+    <div class="md:hidden mb-4">
+      <button
+        data-plugin="hamburger"
+        data-options='{"target":"#mobileMenu"}'
+        class="p-2 bg-gray-800 text-white rounded"
+      >
+        ☰ Menu
+      </button>
+    </div>
+    <nav
+      id="mobileMenu"
+      class="hidden md:flex flex-col bg-gray-100 p-4 rounded mb-6 space-y-2"
+    >
+      <a href="#">Accueil</a>
+      <a href="#">Services</a>
+      <a href="#">Contact</a>
+    </nav>
+
+    <!-- Modal -->
+    <button
+      id="openModal"
+      class="mb-4 px-4 py-2 bg-blue-600 text-white rounded"
+    >
+      Ouvrir modale
+    </button>
+    <div
+      data-plugin="modal"
+      data-options='{"trigger": "#openModal"}'
+      class="hidden fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center"
+    >
+      <div class="bg-white text-black p-6 rounded">Contenu de la modale</div>
+    </div>
+
+    <!-- Tabs -->
+    <div data-plugin="tabs" class="mb-6">
+      <div class="space-x-2">
+        <button data-tab="1" class="px-3 py-1 bg-blue-500 text-white rounded">
+          Onglet 1
+        </button>
+        <button data-tab="2" class="px-3 py-1 bg-gray-300 rounded">
+          Onglet 2
+        </button>
+      </div>
+      <div class="tab-content mt-2" data-tab="1">Contenu 1</div>
+      <div class="tab-content mt-2 hidden" data-tab="2">Contenu 2</div>
+    </div>
+
+    <!-- Tooltip -->
+    <span
+      data-plugin="tooltip"
+      data-options='{"text":"Je suis un tooltip"}'
+      class="underline cursor-help"
+      >Survole-moi</span
+    >
+
+    <!-- Toast -->
+    <button
+      onclick="cubFirstToast()"
+      class="mb-6 ml-4 bg-green-700 text-white px-4 py-2 rounded"
+    >
+      Afficher Toast
+    </button>
+    <script>
+      function cubFirstToast() {
+        const t = document.createElement("div");
+        t.setAttribute("data-plugin", "toast");
+        t.setAttribute(
+          "data-options",
+          JSON.stringify({
+            message: "Action réussie !",
+            type: "success",
+            duration: 3000,
+          })
+        );
+        document.body.appendChild(t);
+      }
+    </script>
+
+    <!-- Reveal -->
+    <div
+      data-plugin="reveal"
+      data-options='{"animation":"fade"}'
+      class="opacity-0 mt-10 p-4 bg-yellow-100 rounded text-center"
+    >
+      Je s'affiche en scrollant
+    </div>
+
+    <!-- Input Mask -->
+    <div class="mt-10 space-y-4 max-w-md">
+      <input
+        data-plugin="input-mask"
+        data-options='{"type":"phone"}'
+        placeholder="Téléphone"
+        class="w-full border px-2 py-1"
+      />
+      <input
+        data-plugin="input-mask"
+        data-options='{"type":"date"}'
+        placeholder="Date (JJ/MM/AAAA)"
+        class="w-full border px-2 py-1"
+      />
+    </div>
+
+    <!-- Card -->
+    <div
+      data-plugin="card"
+      data-options='{"title":"Produit vedette","content":"Carte générée dynamiquement.","image":"https://via.placeholder.com/400x200","footer":"En stock"}'
+      class="my-10"
+    ></div>
+
+    <!-- Filter -->
+    <div class="mb-4 space-x-2">
+      <button
+        data-plugin="filter"
+        data-options='{"target":".card", "value":"dev"}'
+        class="px-3 py-1 bg-blue-600 text-white rounded"
+      >
+        Dev
+      </button>
+      <button
+        data-plugin="filter"
+        data-options='{"target":".card", "value":"design"}'
+        class="px-3 py-1 bg-green-600 text-white rounded"
+      >
+        Design
+      </button>
+      <button
+        data-plugin="filter"
+        data-options='{"target":".card", "value":"all"}'
+        class="px-3 py-1 bg-gray-600 text-white rounded"
+      >
+        Tous
+      </button>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div class="card p-4 bg-blue-100 rounded" data-tag="dev">
+        Développeur front
+      </div>
+      <div class="card p-4 bg-green-100 rounded" data-tag="design">
+        UI/UX Designer
+      </div>
+      <div class="card p-4 bg-yellow-100 rounded" data-tag="dev design">
+        Fullstack créatif
+      </div>
+    </div>
+
+    <!-- Grid Expand -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-10">
+      <div
+        data-plugin="grid-expand"
+        class="bg-white p-6 rounded shadow text-center"
+      >
+        Carte 1
+      </div>
+      <div
+        data-plugin="grid-expand"
+        class="bg-white p-6 rounded shadow text-center"
+      >
+        Carte 2
+      </div>
+      <div
+        data-plugin="grid-expand"
+        class="bg-white p-6 rounded shadow text-center"
+      >
+        Carte 3
+      </div>
+    </div>
+
+    <!-- Hover Preview -->
+    <p class="my-10 text-lg">
+      Survole ce lien :
+      <a
+        href="#"
+        data-plugin="hover-preview"
+        data-options='{"image":"https://via.placeholder.com/150","text":"Aperçu"}'
+        class="text-blue-600 underline"
+        >voir l’aperçu</a
+      >
+    </p>
+
+    <!-- Rating -->
+    <div class="my-8">
+      <h2 class="text-xl font-bold mb-2">Évaluation :</h2>
+      <div
+        data-plugin="rating"
+        data-options='{"value":4, "max":5, "readonly": true}'
+      ></div>
+    </div>
+
+    <!-- Load More -->
+    <div class="my-10 space-y-2">
+      <div class="item-to-show hidden p-4 bg-gray-100 rounded">Bloc 1</div>
+      <div class="item-to-show hidden p-4 bg-gray-100 rounded">Bloc 2</div>
+      <div class="item-to-show hidden p-4 bg-gray-100 rounded">Bloc 3</div>
+      <div class="item-to-show hidden p-4 bg-gray-100 rounded">Bloc 4</div>
+      <div class="item-to-show hidden p-4 bg-gray-100 rounded">Bloc 5</div>
+      <div class="item-to-show hidden p-4 bg-gray-100 rounded">Bloc 6</div>
+      <button
+        data-plugin="load-more"
+        data-options='{"target":".item-to-show", "batch":2}'
+        class="px-4 py-2 bg-indigo-600 text-white rounded mt-2"
+      >
+        Charger plus
+      </button>
+    </div>
+
+    <!-- Countdown -->
+    <div
+      data-plugin="countdown"
+      data-options='{"to": "2025-12-31T23:59:59"}'
+      class="text-center text-lg font-semibold text-rose-600 mb-8"
+    ></div>
+  </body>
+</html>
